@@ -1,12 +1,14 @@
 import { shallowMount } from "@vue/test-utils";
-import HelloWorld from "@/components/HelloWorld.vue";
+import Progress from "@/index.vue";
 
-describe("HelloWorld.vue", () => {
+describe("Progress.vue", () => {
   it("renders props.msg when passed", () => {
-    const msg = "new message";
-    const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg }
+    const wrapper = shallowMount(Progress, {
+      propsData: { value: 18.77 }
     });
-    expect(wrapper.text()).toMatch(msg);
+    setTimeout(() => {
+      expect(wrapper.vm.$options.data.int).toBe(18);
+      expect(wrapper.vm.$options.data.dec).toBe(77);
+    }, 1000);
   });
 });

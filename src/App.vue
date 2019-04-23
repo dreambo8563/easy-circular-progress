@@ -1,6 +1,33 @@
 <template>
   <div id="app">
-    <Progress></Progress>
+    <Progress value="16.88">
+      <!-- <template v-slot:footer>
+        <b>goood</b>
+      </template>-->
+    </Progress>
+    <Progress strokeColor="#FF00AA" value="16.88">
+      <template v-slot:footer>
+        <b>More Color</b>
+      </template>
+    </Progress>
+
+    <Progress :radius="50" :strokeWidth="10" value="86.12">
+      <template v-slot:footer>
+        <b>Bolder & Bigger One</b>
+      </template>
+    </Progress>
+
+    <Progress :transitionDuration="5000" :radius="50" :strokeWidth="10" value="86.12">
+      <template v-slot:footer>
+        <b>Slow One</b>
+      </template>
+    </Progress>
+
+    <Progress :transitionDuration="5000" :radius="55" :strokeWidth="10" value="86.12567">
+      <template v-slot:footer>
+        <b>More Precise</b>
+      </template>
+    </Progress>
   </div>
 </template>
 
@@ -24,6 +51,9 @@ export default {
   height: 100vh;
   color: #fff;
   background: #3e423a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 body {
   margin: 0;

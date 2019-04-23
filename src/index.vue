@@ -1,11 +1,17 @@
 <template>
   <div class="vue-circular-progress">
     <div class="circle">
-      <svg width="84" height="84" class="circle__svg">
-        <circle cx="41" cy="41" :r="radius" class="circle__progress circle__progress--path"></circle>
+      <svg :width="circleSize" :height="circleSize" class="circle__svg">
         <circle
-          cx="41"
-          cy="41"
+          :cx="centralP"
+          :cy="centralP"
+          :r="radius"
+          :style=" {'stroke-width':strokeWidth,stroke:strokeColor}"
+          class="circle__progress circle__progress--path"
+        ></circle>
+        <circle
+          :cx="centralP"
+          :cy="centralP"
           :r="radius"
           :style="fileStyl"
           class="circle__progress circle__progress--fill"
@@ -14,19 +20,42 @@
 
       <div class="percent">
         <span class="percent__int">{{int}}.</span>
-        <span class="percent__dec">{{dec}}</span>
+        <span class="percent__dec">{{dec}}%</span>
       </div>
     </div>
-    <span class="label">Reasonable</span>
+    <slot name="footer"></slot>
   </div>
 </template>
 <script>
 export default {
+  props: {
+    strokeWidth: {
+      type: Number,
+      default: 4
+    },
+    radius: {
+      type: Number,
+      default: 38
+    },
+    transitionDuration: {
+      type: Number,
+      default: 1000
+    },
+    strokeColor: {
+      type: String,
+      default: "#aaff00"
+    },
+    value: {
+      validator: function (value) {
+        // should be a number and less or equal than 100
+        return !Number.isNaN(Number(value)) && Number(value) <= 100
+      },
+      default: "0.0"
+    }
+  },
   data() {
     return {
-      number: 7.27,
-      transitionDuration: 1000,
-      radius: 38,
+      // number: 9.27,
       offset: '',
       int: 0,
       dec: "00"
@@ -40,93 +69,92 @@ export default {
       return {
         strokeDashoffset: this.offset,
         '--initialStroke': this.circumference,
-        '--transitionDuration': `${this.transitionDuration}ms`
+        '--transitionDuration': `${this.transitionDuration}ms`,
+        'stroke-width': this.strokeWidth,
+        stroke: this.strokeColor
       }
+    },
+    circleSize() {
+      return (this.radius + this.strokeWidth) * 2
+    },
+    centralP() {
+      return this.circleSize / 2
     }
   },
   methods: {
     increaseNumber(number, className) {
+      if (number == 0) {
+        return
+      }
+      const innerNum = parseInt(this.findClosestNumber(this.transitionDuration / 10, number))
+      let interval = this.transitionDuration / innerNum;
 
-      const interval = this.transitionDuration / number;
       let counter = 0;
-
-      let increaseInterval = setInterval(() => {
-        if (counter === number) { window.clearInterval(increaseInterval); }
-
-        this[className] = counter
+      const handlerName = `${className}Interval`
+      this[handlerName] = setInterval(() => {
+        const bitDiff = (number.toString().length - innerNum.toString().length)
+        if (bitDiff == 0) {
+          this[className] = counter
+        } else {
+          this[className] = counter * 10 * bitDiff
+        }
+        if (counter === innerNum) {
+          // back to origin precision
+          this[className] = number
+          window.clearInterval(this[handlerName]);
+        }
         counter++;
       }, interval);
+    },
+    findClosestNumber(bound, value) {
+      if (value <= bound) {
+        return value
+      }
+      return this.findClosestNumber(bound, value / 10)
+    },
+    countNumber(v) {
+      this.offset = ""
+
+      this.initTimeoutHandler = setTimeout(() => {
+        this.offset = this.circumference * (100 - v) / 100;
+      }, 100);
+      let [int, dec] = v.toString().split('.');
+
+      // fallback for NaN
+      [int, dec] = [Number(int), Number(dec)];
+      this.increaseNumber(int, 'int')
+      this.increaseNumber(dec, 'dec')
+    },
+    clearHandlers() {
+      if (this.initTimeoutHandler) {
+        clearTimeout(this.initTimeoutHandler)
+      }
+      if (this.intInterval) {
+        clearInterval(this.intInterval)
+      }
+      if (this.decInterval) {
+        clearInterval(this.decInterval)
+      }
     }
   },
-  mounted() {
-    setTimeout(() => {
-      this.offset = this.circumference * (10 - this.number) / 10;
-    }, 100);
-    this.increaseNumber(7, 'int')
-    this.increaseNumber(27, 'dec')
+  watch: {
+    value: {
+      handler: function (v) {
+        const n = Number(v)
+        if (Number.isNaN(n) || n == 0) {
+          return
+        }
+        this.clearHandlers()
+        this.countNumber(v)
+      },
+      immediate: true
+    }
+  },
+  beforeDestroy() {
+    this.clearHandlers()
   }
 }
 </script>
 <style lang="scss">
-.circle {
-  position: relative;
-}
-
-.circle__svg {
-  transform: rotate(-90deg);
-}
-
-.circle__progress {
-  fill: none;
-  stroke-width: 3;
-  stroke-opacity: 0.3;
-  stroke-linecap: round;
-}
-
-.circle__progress--fill {
-  --initialStroke: 0;
-  --transitionDuration: 0;
-  stroke-opacity: 1;
-  stroke-dasharray: var(--initialStroke);
-  stroke-dashoffset: var(--initialStroke);
-  transition: stroke-dashoffset var(--transitionDuration) ease;
-}
-
-.circle__progress {
-  stroke: #aaff00;
-}
-// .note-display:nth-child(2) .circle__progress {
-//   stroke: #ff00aa;
-// }
-// .note-display:nth-child(3) .circle__progress {
-//   stroke: #aa00ff;
-// }
-// .note-display:nth-child(4) .circle__progress {
-//   stroke: #00aaff;
-// }
-
-.percent {
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  font-weight: bold;
-  text-align: center;
-  line-height: 28px;
-  transform: translate(-50%, -50%);
-}
-
-.percent__int {
-  font-size: 28px;
-}
-.percent__dec {
-  font-size: 12px;
-}
-
-.label {
-  font-family: "Raleway", serif;
-  font-size: 14px;
-  text-transform: uppercase;
-  margin-top: 15px;
-}
+@import "index";
 </style>
