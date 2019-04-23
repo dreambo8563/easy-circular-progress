@@ -1,17 +1,43 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Progress value="16.88">
+      <!-- <template v-slot:footer>
+        <b>goood</b>
+      </template>-->
+    </Progress>
+    <Progress strokeColor="#FF00AA" value="16.88">
+      <template v-slot:footer>
+        <b>More Color</b>
+      </template>
+    </Progress>
+
+    <Progress :radius="50" :strokeWidth="10" value="86.12">
+      <template v-slot:footer>
+        <b>Bolder & Bigger One</b>
+      </template>
+    </Progress>
+
+    <Progress :transitionDuration="5000" :radius="50" :strokeWidth="10" value="86.12">
+      <template v-slot:footer>
+        <b>Slow One</b>
+      </template>
+    </Progress>
+
+    <Progress :transitionDuration="5000" :radius="55" :strokeWidth="10" value="86.12567">
+      <template v-slot:footer>
+        <b>More Precise</b>
+      </template>
+    </Progress>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Progress from "./index.vue";
 
 export default {
   name: "app",
   components: {
-    HelloWorld
+    Progress
   }
 };
 </script>
@@ -22,7 +48,15 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  height: 100vh;
+  color: #fff;
+  background: #3e423a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body {
+  margin: 0;
+  padding: 0;
 }
 </style>

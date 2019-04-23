@@ -1,0 +1,49 @@
+@import "variable";
+.vue-circular-progress {
+  .circle {
+    position: relative;
+  }
+
+  .circle__svg {
+    transform: rotate(-90deg);
+  }
+
+  .circle__progress {
+    fill: none;
+    stroke-opacity: 0.3;
+    stroke-linecap: round;
+  }
+
+  .circle__progress--fill {
+    --initialStroke: 0;
+    --transitionDuration: 0;
+    stroke-opacity: 1;
+    stroke-dasharray: var(--initialStroke);
+    stroke-dashoffset: var(--initialStroke);
+    transition: stroke-dashoffset var(--transitionDuration) ease;
+  }
+
+  .percent {
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    font-weight: bold;
+    text-align: center;
+    line-height: $--circular-progress-int-fz;
+    transform: translate(-50%, -50%);
+  }
+
+  .percent__int {
+    font-size: $--circular-progress-int-fz;
+  }
+  .percent__dec {
+    font-size: $--circular-progress-dec-fz;
+  }
+
+  .label {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-top: 15px;
+  }
+}
