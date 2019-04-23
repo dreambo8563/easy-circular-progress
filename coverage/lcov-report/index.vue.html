@@ -203,7 +203,9 @@
 158
 159
 160
-161</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+161
+162
+163</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -292,6 +294,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -371,7 +375,7 @@
           :cx="centralP"
           :cy="centralP"
           :r="radius"
-          :style=" {'stroke-width':strokeWidth,stroke:strokeColor}"
+          :style="{ 'stroke-width': strokeWidth, stroke: strokeColor }"
           class="circle__progress circle__progress--path"
         &gt;&lt;/circle&gt;
         &lt;circle
@@ -384,8 +388,8 @@
       &lt;/svg&gt;
 &nbsp;
       &lt;div class="percent"&gt;
-        &lt;span class="percent__int"&gt;{{int}}.&lt;/span&gt;
-        &lt;span class="percent__dec"&gt;{{dec}}%&lt;/span&gt;
+        &lt;span class="percent__int"&gt;{{ int }}.&lt;/span&gt;
+        &lt;span class="percent__dec"&gt;{{ dec }}%&lt;/span&gt;
       &lt;/div&gt;
     &lt;/div&gt;
     &lt;slot name="footer"&gt;&lt;/slot&gt;
@@ -411,9 +415,9 @@ export default {
       default: "#aaff00"
     },
     value: {
-      validator: function (value) {
+      validator: function(value) {
         // should be a number and less or equal than 100
-        return !Number.isNaN(Number(value)) &amp;&amp; Number(value) &lt;= 100
+        return !Number.isNaN(Number(value)) &amp;&amp; Number(value) &lt;= 100;
       },
       default: "0.0"
     }
@@ -421,51 +425,53 @@ export default {
   data() {
     return {
       // number: 9.27,
-      offset: '',
+      offset: "",
       int: 0,
       dec: "00"
-    }
+    };
   },
   computed: {
     circumference() {
-      return this.radius * Math.PI * 2
+      return this.radius * Math.PI * 2;
     },
     fileStyl() {
       return {
         strokeDashoffset: this.offset,
-        '--initialStroke': this.circumference,
-        '--transitionDuration': `${this.transitionDuration}ms`,
-        'stroke-width': this.strokeWidth,
+        "--initialStroke": this.circumference,
+        "--transitionDuration": `${this.transitionDuration}ms`,
+        "stroke-width": this.strokeWidth,
         stroke: this.strokeColor
-      }
+      };
     },
     circleSize() {
-      return (this.radius + this.strokeWidth) * 2
+      return (this.radius + this.strokeWidth) * 2;
     },
     centralP() {
-      return this.circleSize / 2
+      return this.circleSize / 2;
     }
   },
   methods: {
     increaseNumber(number, className) {
 <span class="missing-if-branch" title="if path not taken" >I</span>      if (number == 0) {
-<span class="cstat-no" title="statement not covered" >        return</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
       }
-      const innerNum = parseInt(this.findClosestNumber(this.transitionDuration / 10, number))
+      const innerNum = parseInt(
+        this.findClosestNumber(this.transitionDuration / 10, number)
+      );
       let interval = this.transitionDuration / innerNum;
 &nbsp;
       let counter = 0;
-      const handlerName = `${className}Interval`
+      const handlerName = `${className}Interval`;
 <span class="fstat-no" title="function not covered" >      this[handlerName] = setInterval(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const bitDiff = (number.toString().length - innerNum.toString().length)</span>
+<span class="cstat-no" title="statement not covered" >        const bitDiff = number.toString().length - innerNum.toString().length;</span>
 <span class="cstat-no" title="statement not covered" >        if (bitDiff == 0) {</span>
-<span class="cstat-no" title="statement not covered" >          this[className] = counter</span>
+<span class="cstat-no" title="statement not covered" >          this[className] = counter;</span>
         } else {
-<span class="cstat-no" title="statement not covered" >          this[className] = counter * 10 * bitDiff</span>
+<span class="cstat-no" title="statement not covered" >          this[className] = counter * 10 * bitDiff;</span>
         }
 <span class="cstat-no" title="statement not covered" >        if (counter === innerNum) {</span>
           // back to origin precision
-<span class="cstat-no" title="statement not covered" >          this[className] = number</span>
+<span class="cstat-no" title="statement not covered" >          this[className] = number;</span>
 <span class="cstat-no" title="statement not covered" >          window.clearInterval(this[handlerName]);</span>
         }
 <span class="cstat-no" title="statement not covered" >        counter++;</span>
@@ -473,52 +479,52 @@ export default {
     },
     findClosestNumber(bound, value) {
 <span class="missing-if-branch" title="else path not taken" >E</span>      if (value &lt;= bound) {
-        return value
+        return value;
       }
-<span class="cstat-no" title="statement not covered" >      return this.findClosestNumber(bound, value / 10)</span>
+<span class="cstat-no" title="statement not covered" >      return this.findClosestNumber(bound, value / 10);</span>
     },
     countNumber(v) {
-      this.offset = ""
+      this.offset = "";
 &nbsp;
 <span class="fstat-no" title="function not covered" >      this.initTimeoutHandler = setTimeout(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        this.offset = this.circumference * (100 - v) / 100;</span>
+<span class="cstat-no" title="statement not covered" >        this.offset = (this.circumference * (100 - v)) / 100;</span>
       }, 100);
-      let [int, dec] = v.toString().split('.');
+      let [int, dec] = v.toString().split(".");
 &nbsp;
       // fallback for NaN
       [int, dec] = [Number(int), Number(dec)];
-      this.increaseNumber(int, 'int')
-      this.increaseNumber(dec, 'dec')
+      this.increaseNumber(int, "int");
+      this.increaseNumber(dec, "dec");
     },
     clearHandlers() {
 <span class="missing-if-branch" title="if path not taken" >I</span>      if (this.initTimeoutHandler) {
-<span class="cstat-no" title="statement not covered" >        clearTimeout(this.initTimeoutHandler)</span>
+<span class="cstat-no" title="statement not covered" >        clearTimeout(this.initTimeoutHandler);</span>
       }
 <span class="missing-if-branch" title="if path not taken" >I</span>      if (this.intInterval) {
-<span class="cstat-no" title="statement not covered" >        clearInterval(this.intInterval)</span>
+<span class="cstat-no" title="statement not covered" >        clearInterval(this.intInterval);</span>
       }
 <span class="missing-if-branch" title="if path not taken" >I</span>      if (this.decInterval) {
-<span class="cstat-no" title="statement not covered" >        clearInterval(this.decInterval)</span>
+<span class="cstat-no" title="statement not covered" >        clearInterval(this.decInterval);</span>
       }
     }
   },
   watch: {
     value: {
-      handler: function (v) {
-        const n = Number(v)
+      handler: function(v) {
+        const n = Number(v);
 <span class="missing-if-branch" title="if path not taken" >I</span>        if (Number.isNaN(n) || n == 0) {
-<span class="cstat-no" title="statement not covered" >          return</span>
+<span class="cstat-no" title="statement not covered" >          return;</span>
         }
-        this.clearHandlers()
-        this.countNumber(v)
+        this.clearHandlers();
+        this.countNumber(v);
       },
       immediate: true
     }
   },
   beforeDestroy() {
-<span class="cstat-no" title="statement not covered" >    this.clearHandlers()</span>
+<span class="cstat-no" title="statement not covered" >    this.clearHandlers();</span>
   }
-}
+};
 &lt;/script&gt;
 &lt;style lang="scss"&gt;
 @import "index";
@@ -529,7 +535,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Apr 23 2019 14:41:08 GMT+0800 (China Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Apr 23 2019 21:19:19 GMT+0800 (China Standard Time)
 </div>
 </div>
 <script src="prettify.js"></script>
