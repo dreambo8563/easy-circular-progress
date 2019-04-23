@@ -3,6 +3,8 @@
 ![npm](https://img.shields.io/npm/dt/vue-circular-progress.svg?style=flat)
 [![Build Status](https://travis-ci.com/dreambo8563/vue-circular-progress.svg?branch=master)](https://travis-ci.com/dreambo8563/vue-circular-progress)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdreambo8563%2Fvue-circular-progress.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdreambo8563%2Fvue-circular-progress?ref=badge_shield)
+[![Greenkeeper badge](https://badges.greenkeeper.io/dreambo8563/vue-circular-progress.svg)](https://greenkeeper.io/)
+
 
 # vue-circular-progress
 
