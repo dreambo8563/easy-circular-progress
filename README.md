@@ -96,13 +96,13 @@ body {
 
 ### Prop Types
 
-| Property           | Type   | Required? | Description                                                           |
-| :----------------- | :----- | :-------- | :-------------------------------------------------------------------- |
-| strokeWidth        | Number |           | default is 4, the width of the progress circle, the bigger the bolder |
-| radius             | Number |           | the inner circle radius, default is 38                                |
-| transitionDuration | Number |           | default is 1000, transitionDuration for the animation                 |
-| strokeColors       | String |           | default is "#aaff00"                                                  |
-| value              | Number | String    |                                                                       | default is 0.0, should be less or equal then 100 |
+| Property           | Type             | Required? | Description                                                           |
+| :----------------- | :--------------- | :-------- | :-------------------------------------------------------------------- |
+| strokeWidth        | Number           |           | default is 4, the width of the progress circle, the bigger the bolder |
+| radius             | Number           |           | the inner circle radius, default is 38                                |
+| transitionDuration | Number           |           | default is 1000, transitionDuration for the animation                 |
+| strokeColors       | String           |           | default is "#aaff00"                                                  |
+| value              | Number \| String |           | default is 0.0, should be less or equal then 100                      |
 
 ### Slot
 
@@ -135,6 +135,16 @@ We can define the font-size for each part
 
 - \$--circular-progress-int-fz: 28px;
 - \$--circular-progress-dec-fz: 12px;
+
+#### Possibly Polyfill
+
+```js
+Number.isNaN =
+  Number.isNaN ||
+  function(value) {
+    return value !== value
+  }
+```
 
 ## License
 
