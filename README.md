@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.com/dreambo8563/vue-circular-progress.svg?branch=master)](https://travis-ci.com/dreambo8563/vue-circular-progress)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdreambo8563%2Fvue-circular-progress.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdreambo8563%2Fvue-circular-progress?ref=badge_shield)
 [![Greenkeeper badge](https://badges.greenkeeper.io/dreambo8563/vue-circular-progress.svg)](https://greenkeeper.io/)
-
+[![Known Vulnerabilities](https://snyk.io/test/github/dreambo8563/vue-circular-progress/badge.svg?targetFile=package.json)](https://snyk.io/test/github/dreambo8563/vue-circular-progress?targetFile=package.json)
 
 # vue-circular-progress
 
@@ -49,6 +49,6 @@ npm run test:unit
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-
 ## License
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdreambo8563%2Fvue-circular-progress.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdreambo8563%2Fvue-circular-progress?ref=badge_large)
