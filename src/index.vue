@@ -6,7 +6,7 @@
           :cx="centralP"
           :cy="centralP"
           :r="radius"
-          :style=" {'stroke-width':strokeWidth,stroke:strokeColor}"
+          :style="{ 'stroke-width': strokeWidth, stroke: strokeColor }"
           class="circle__progress circle__progress--path"
         ></circle>
         <circle
@@ -19,8 +19,8 @@
       </svg>
 
       <div class="percent">
-        <span class="percent__int">{{int}}.</span>
-        <span class="percent__dec">{{dec}}%</span>
+        <span class="percent__int">{{ int }}.</span>
+        <span class="percent__dec">{{ dec }}%</span>
       </div>
     </div>
     <slot name="footer"></slot>
@@ -46,9 +46,9 @@ export default {
       default: "#aaff00"
     },
     value: {
-      validator: function (value) {
+      validator: function(value) {
         // should be a number and less or equal than 100
-        return !Number.isNaN(Number(value)) && Number(value) <= 100
+        return !Number.isNaN(Number(value)) && Number(value) <= 100;
       },
       default: "0.0"
     }
@@ -56,51 +56,53 @@ export default {
   data() {
     return {
       // number: 9.27,
-      offset: '',
+      offset: "",
       int: 0,
       dec: "00"
-    }
+    };
   },
   computed: {
     circumference() {
-      return this.radius * Math.PI * 2
+      return this.radius * Math.PI * 2;
     },
     fileStyl() {
       return {
         strokeDashoffset: this.offset,
-        '--initialStroke': this.circumference,
-        '--transitionDuration': `${this.transitionDuration}ms`,
-        'stroke-width': this.strokeWidth,
+        "--initialStroke": this.circumference,
+        "--transitionDuration": `${this.transitionDuration}ms`,
+        "stroke-width": this.strokeWidth,
         stroke: this.strokeColor
-      }
+      };
     },
     circleSize() {
-      return (this.radius + this.strokeWidth) * 2
+      return (this.radius + this.strokeWidth) * 2;
     },
     centralP() {
-      return this.circleSize / 2
+      return this.circleSize / 2;
     }
   },
   methods: {
     increaseNumber(number, className) {
       if (number == 0) {
-        return
+        return;
       }
-      const innerNum = parseInt(this.findClosestNumber(this.transitionDuration / 10, number))
+      const innerNum = parseInt(
+        this.findClosestNumber(this.transitionDuration / 10, number)
+      );
       let interval = this.transitionDuration / innerNum;
 
       let counter = 0;
-      const handlerName = `${className}Interval`
+      const handlerName = `${className}Interval`;
       this[handlerName] = setInterval(() => {
-        const bitDiff = (number.toString().length - innerNum.toString().length)
+        const bitDiff = number.toString().length - innerNum.toString().length;
         if (bitDiff == 0) {
-          this[className] = counter
+          this[className] = counter;
         } else {
-          this[className] = counter * 10 * bitDiff
+          this[className] = counter * 10 * bitDiff;
         }
         if (counter === innerNum) {
           // back to origin precision
-          this[className] = number
+          this[className] = number;
           window.clearInterval(this[handlerName]);
         }
         counter++;
@@ -108,52 +110,52 @@ export default {
     },
     findClosestNumber(bound, value) {
       if (value <= bound) {
-        return value
+        return value;
       }
-      return this.findClosestNumber(bound, value / 10)
+      return this.findClosestNumber(bound, value / 10);
     },
     countNumber(v) {
-      this.offset = ""
+      this.offset = "";
 
       this.initTimeoutHandler = setTimeout(() => {
-        this.offset = this.circumference * (100 - v) / 100;
+        this.offset = (this.circumference * (100 - v)) / 100;
       }, 100);
-      let [int, dec] = v.toString().split('.');
+      let [int, dec] = v.toString().split(".");
 
       // fallback for NaN
       [int, dec] = [Number(int), Number(dec)];
-      this.increaseNumber(int, 'int')
-      this.increaseNumber(dec, 'dec')
+      this.increaseNumber(int, "int");
+      this.increaseNumber(dec, "dec");
     },
     clearHandlers() {
       if (this.initTimeoutHandler) {
-        clearTimeout(this.initTimeoutHandler)
+        clearTimeout(this.initTimeoutHandler);
       }
       if (this.intInterval) {
-        clearInterval(this.intInterval)
+        clearInterval(this.intInterval);
       }
       if (this.decInterval) {
-        clearInterval(this.decInterval)
+        clearInterval(this.decInterval);
       }
     }
   },
   watch: {
     value: {
-      handler: function (v) {
-        const n = Number(v)
+      handler: function(v) {
+        const n = Number(v);
         if (Number.isNaN(n) || n == 0) {
-          return
+          return;
         }
-        this.clearHandlers()
-        this.countNumber(v)
+        this.clearHandlers();
+        this.countNumber(v);
       },
       immediate: true
     }
   },
   beforeDestroy() {
-    this.clearHandlers()
+    this.clearHandlers();
   }
-}
+};
 </script>
 <style lang="scss">
 @import "index";

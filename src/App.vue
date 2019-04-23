@@ -17,13 +17,23 @@
       </template>
     </Progress>
 
-    <Progress :transitionDuration="5000" :radius="50" :strokeWidth="10" value="86.12">
+    <Progress
+      :transitionDuration="5000"
+      :radius="50"
+      :strokeWidth="10"
+      value="86.12"
+    >
       <template v-slot:footer>
         <b>Slow One</b>
       </template>
     </Progress>
 
-    <Progress :transitionDuration="5000" :radius="55" :strokeWidth="10" value="86.12567">
+    <Progress
+      :transitionDuration="5000"
+      :radius="55"
+      :strokeWidth="10"
+      value="86.12567"
+    >
       <template v-slot:footer>
         <b>More Precise</b>
       </template>
