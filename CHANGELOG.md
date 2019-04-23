@@ -1,3 +1,13 @@
+<a name="1.0.2"></a>
+## [1.0.2](https://github.com/dreambo8563/easy-circular-progress/compare/v1.0.1...v1.0.2) (2019-04-23)
+
+
+### Bug Fixes
+
+* **css:** container inline-block ([6ca087b](https://github.com/dreambo8563/easy-circular-progress/commit/6ca087b))
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/dreambo8563/easy-circular-progress/compare/v1.0.0...v1.0.1) (2019-04-23)
 
