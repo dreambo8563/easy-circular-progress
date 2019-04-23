@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9d5901431eb1423192c2ace8bd5064d3)](https://app.codacy.com/app/dreambo8563/vue-circular-progress?utm_source=github.com&utm_medium=referral&utm_content=dreambo8563/vue-circular-progress&utm_campaign=Badge_Grade_Dashboard)
 [![codecov](https://codecov.io/gh/dreambo8563/vue-circular-progress/branch/master/graph/badge.svg)](https://codecov.io/gh/dreambo8563/vue-circular-progress)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![npm](https://img.shields.io/npm/dt/vue-circular-progress.svg?style=flat)
