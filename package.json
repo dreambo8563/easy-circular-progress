@@ -1,11 +1,13 @@
 {
-  "name": "vue-circular-progress",
-  "version": "0.1.0",
-  "private": true,
+  "name": "easy-circular-progress",
+  "version": "1.0.0",
+  "private": false,
   "author": "dreambo8563",
+  "main": "dist/easy-circular-progress.umd.min.js",
+  "description": "easy circular progress component with counting effect",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name vue-circular-progress src/index.js",
+    "build": "vue-cli-service build --target lib --name easy-circular-progress src/index.js",
     "test": "codecov --token=86e04c79-2ac0-49f8-9d40-50e49bf4a10d",
     "pages": "vue-cli-service build --dest docs",
     "lint": "vue-cli-service lint",
@@ -38,5 +40,27 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dreambo8563/easy-circular-progress.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dreambo8563/easy-circular-progress/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "dist/*",
+    "src/*",
+    "package.json",
+    "*.js",
+    "README.md"
+  ],
+  "keywords": [
+    "vue",
+    "progress",
+    "component",
+    "circular",
+    "countdown"
+  ]
 }

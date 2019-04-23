@@ -1,6 +1,6 @@
 module.exports = {
   publicPath:
-    process.env.NODE_ENV === "production" ? "/vue-circular-progress/" : "/",
+    process.env.NODE_ENV === "production" ? "/easy-circular-progress/" : "/",
   css: {
     extract: false
   }
