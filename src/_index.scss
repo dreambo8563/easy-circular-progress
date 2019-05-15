@@ -1,4 +1,4 @@
-@import "variable";
+@import 'variable';
 .vue-circular-progress {
   display: inline-block;
   .circle {
@@ -38,7 +38,8 @@
   .percent__int {
     font-size: $--circular-progress-int-fz;
   }
-  .percent__dec {
+  .percent__dec,
+  .percent_sign {
     font-size: $--circular-progress-dec-fz;
   }
 

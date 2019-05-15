@@ -1,3 +1,13 @@
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/dreambo8563/easy-circular-progress/compare/v1.0.2...v1.0.3) (2019-05-15)
+
+
+### Bug Fixes
+
+* **integer:** fix to  support integer ([58f596b](https://github.com/dreambo8563/easy-circular-progress/commit/58f596b))
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/dreambo8563/easy-circular-progress/compare/v1.0.1...v1.0.2) (2019-04-23)
 

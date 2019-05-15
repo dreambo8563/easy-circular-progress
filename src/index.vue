@@ -19,8 +19,10 @@
       </svg>
 
       <div class="percent">
-        <span class="percent__int">{{ int }}.</span>
-        <span class="percent__dec">{{ dec }}%</span>
+        <span class="percent__int">{{ int }}</span>
+        <span class="dot">.</span>
+        <span class="percent__dec">{{ dec }}</span>
+        <span class="percent_sign">%</span>
       </div>
     </div>
     <slot name="footer"></slot>
@@ -125,7 +127,7 @@ export default {
       // fallback for NaN
       [int, dec] = [Number(int), Number(dec)];
       this.increaseNumber(int, "int");
-      this.increaseNumber(dec, "dec");
+      this.increaseNumber(Number.isNaN(dec) ? 0 : dec, "dec");
     },
     clearHandlers() {
       if (this.initTimeoutHandler) {
