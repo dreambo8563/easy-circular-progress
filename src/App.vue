@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <Progress value="16.88">
-      <!-- <template v-slot:footer>
-        <b>goood</b>
-      </template>-->
-    </Progress>
+    <Progress value="16.88"></Progress>
     <Progress strokeColor="#FF00AA" value="16.88">
       <template v-slot:footer>
         <b>More Color</b>
@@ -21,7 +17,7 @@
       :transitionDuration="5000"
       :radius="50"
       :strokeWidth="10"
-      value="86.12"
+      value="86"
     >
       <template v-slot:footer>
         <b>Slow One</b>
