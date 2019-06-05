@@ -9,4 +9,4 @@ pages:
 report:
 	npm run report
 test:
-	npm run test
+	npm run testm

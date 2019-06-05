@@ -59,6 +59,13 @@ npm install easy-circular-progress --save
         <b>More Precise</b>
       </template>
     </Progress>
+
+    <Progress :transitionDuration="5000" :radius="55" :strokeWidth="10" value="86.12567">
+      <div class="content">hello</div>
+      <template v-slot:footer>
+        <b>More Precise</b>
+      </template>
+    </Progress>
   </div>
 </template>
 
@@ -106,9 +113,12 @@ body {
 
 ### Slot
 
-| Slot Name | Description                        |
-| :-------- | ---------------------------------- |
-| footer    | we can add a footer for the circle |
+| Slot Name | Description                         |
+| :-------- | ----------------------------------- |
+| footer    | we can add a footer for the circle  |
+| default   | the content displayed in the circle |
+
+> if default slot provided, the coutdown effect will be ignored.
 
 ### Advance Guide
 
@@ -119,13 +129,13 @@ body {
 ```scss
 $--circular-progress-int-fz: 28px;
 $--circular-progress-dec-fz: 12px;
-@import "~easy-circular-progress/src/index";
+@import '~easy-circular-progress/src/index';
 ```
 
 - import the scss to override the default theme in main.js (entry file) before you import the Draw component
 
 ```js
-import "./demo.scss"
+import './demo.scss';
 ```
 
 > variables
@@ -142,8 +152,8 @@ We can define the font-size for each part
 Number.isNaN =
   Number.isNaN ||
   function(value) {
-    return value !== value
-  }
+    return value !== value;
+  };
 ```
 
 ## License

@@ -19,10 +19,12 @@
       </svg>
 
       <div class="percent">
-        <span class="percent__int">{{ int }}</span>
-        <span class="dot">.</span>
-        <span class="percent__dec">{{ dec }}</span>
-        <span class="percent_sign">%</span>
+        <slot>
+          <span class="percent__int">{{ int }}</span>
+          <span class="dot">.</span>
+          <span class="percent__dec">{{ dec }}</span>
+          <span class="percent_sign">%</span>
+        </slot>
       </div>
     </div>
     <slot name="footer"></slot>
@@ -57,7 +59,6 @@ export default {
   },
   data() {
     return {
-      // number: 9.27,
       offset: "",
       int: 0,
       dec: "00"
@@ -122,6 +123,7 @@ export default {
       this.initTimeoutHandler = setTimeout(() => {
         this.offset = (this.circumference * (100 - v)) / 100;
       }, 100);
+      if (this.$slots.default) return;
       let [int, dec] = v.toString().split(".");
 
       // fallback for NaN
