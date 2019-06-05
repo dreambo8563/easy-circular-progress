@@ -34,6 +34,18 @@
         <b>More Precise</b>
       </template>
     </Progress>
+
+    <Progress
+      :transitionDuration="5000"
+      :radius="55"
+      :strokeWidth="10"
+      value="86.12567"
+    >
+      <div class="content">hello</div>
+      <template v-slot:footer>
+        <b>More Precise</b>
+      </template>
+    </Progress>
   </div>
 </template>
 

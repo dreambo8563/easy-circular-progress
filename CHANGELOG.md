@@ -1,3 +1,13 @@
+<a name="1.0.4"></a>
+## [1.0.4](https://github.com/dreambo8563/easy-circular-progress/compare/v1.0.3...v1.0.4) (2019-06-05)
+
+
+### Features
+
+* **default slot:** customize the content in the circle ([89ce5a4](https://github.com/dreambo8563/easy-circular-progress/commit/89ce5a4))
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/dreambo8563/easy-circular-progress/compare/v1.0.2...v1.0.3) (2019-05-15)
 
