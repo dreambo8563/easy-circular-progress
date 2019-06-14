@@ -18,7 +18,7 @@ npm install easy-circular-progress --save
 
 ### Quick Start
 
-```js
+```vue
 <template>
   <div id="app">
     <Progress value="16.88">
