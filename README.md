@@ -70,7 +70,7 @@ npm install easy-circular-progress --save
 </template>
 
 <script>
-import Progress from "./index.vue";
+import Progress from "easy-circular-progress";
 
 export default {
   name: "app",
